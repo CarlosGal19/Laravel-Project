@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('ideas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('creator_id');
             $table->string('title');
             $table->text('description');
             $table->unsignedInteger('likes');
             $table->timestamps();
+
+            $table->foreign('creator_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 
